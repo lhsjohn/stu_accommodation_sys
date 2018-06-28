@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+<title>Support Admin</title>
+<!-- BOOTSTRAP CORE STYLE CSS -->
+<link href="../../css/bootstrap.css" rel="stylesheet" />
+<!-- FONT AWESOME CSS -->
+<link href="../../css/font-awesome.min.css" rel="stylesheet" />
+<!-- CUSTOM STYLE CSS -->
+<link href="../../css/style.css" rel="stylesheet" />
+<!-- Google	Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Nova+Flat'
+	rel='stylesheet' type='text/css' />
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300'
+	rel='stylesheet' type='text/css' />
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+    
+    function add(){
+    	var houseAddress=$("#houseAddress").val();
+    	var houseType=$("#houseType").val();
+    	var houseCapacity=$("#houseCapacity").val();
+    	var houseCost=$("#houseCost").val();
+    	var houseHostname=$("#houseHostname").val();
+    	var houseDesc=$("#houseDesc").val();
+    	var houseHostid=$("#houseHostid").val();
+    	var houseId=$("#houseId").val();
+    	var houseState=$("#houseState").val();
+    	//var cost=parseFloat(houseCost)*0.05;
+    	//var houseCost=$("#info").val();
+    	var house_json = {        
+    			"houseAddress":houseAddress,
+    			"houseType":houseType,
+    			"houseCapacity":houseCapacity,
+    			"houseCost":houseCost,
+    			"houseHostname":houseHostname,
+    			"houseDesc":houseDesc,
+    			"houseHostid":houseHostid,
+    			"houseId": houseId,
+    			"houseState":houseState
+            };  
+    	var jason_str = JSON.stringify(house_json);  
+    	$.ajax({	
+    		url:"/landlord-update-house",
+    		type:"post",
+    		data:jason_str,
+    		contentType:"application/json; charset=utf-8", 
+    	    dataType:'json',
+    	    success:function(msg){
+    	    	if(msg.msg='1'){
+    	        	alert("修改成功");
+    	        	window.location.href="/after_edit_dashboard";
+    	    	}else if(msg.msg ='0'){   			 
+		       alert("提交失败");
+    	    	}
+    	    }
+    	})
+    }
+	function getHouseId(url) {
+		$('#info').val(url);//给会话中的隐藏属性URL赋值  
+		$('#exampleModal').modal();
+	}
+    
+    function getCost(){
+    	var houseCost=$("#houseCost").val();
+    	var cost=parseFloat(houseCost)*0.05;
+        $('#info').val(cost);//给会话中的隐藏属性URL赋值  
+        $('#myMessage').html("您需要支付"+cost+"元,确认支付?");
+	    $('#exampleModal').modal();  
+    }
+    
+    function confirm(){
+    	var houseId=$("#info").val();
+    	alert("修改成功");
+    	window.location.href="after_edit_dashboard/"+houseId;	
+    }
+    
+    </script>
+</head>
+<body>
+	<div id="head">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<a href="index.html"> <img src="../../img/logo.png" />
+					</a>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+					<img src="../../img/top-mouse.png " class="header-mid" />
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4">
+				      <h4><span>姓名:</span>李华硕</h4>
+                    <h4><span>学号:</span>1625131015</h4>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<section id="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6">
+
+					<h3>
+						编辑房屋信息表单<span class="label label-success">Open: 3</span>
+					</h3>
+					<form action="/landlord-update-house" class="form-horizontal"
+						role="form" th:action="@{//landlord-update-house}"
+						th:object="${house}" method="post" th:method="post"
+						enctype="multipart/form-data" >
+						<div class="form-group">
+						<span class="label label-info">房屋地址:</span>
+						<input type="text" class="form-control" required="required" placeholder="请输入房屋地址" id="houseAddress"
+                         th:classappend="${#fields.hasErrors('houseAddress')}?'text-danger'"  th:field="*{houseAddress}"  />
+	
+						</div>
+                  
+						<input type="hidden" class="form-control"th:field="*{houseHostid}"  id="houseHostid"  value="${landlordId}">
+						<input type="hidden" class="form-control"th:field="*{houseId}"  id="houseId"  value="${house.houseId}">
+						<div class="form-group">
+						    <span class="label label-info">房屋类型(单人间或者多人间):</span>
+							<input type="text" class="form-control" required="required" placeholder="请输入房屋类型" id="houseType"
+                         th:classappend="${#fields.hasErrors('houseType')}?'text-danger'"  th:field="*{houseType}"  />
+				
+						</div>
+						<div class="form-group">
+						<span class="label label-info">适合住宿的人数:</span>
+							<input type="text" class="form-control" required="required" placeholder="请输入适合住宿的人数" id="houseCapacity"
+                         th:classappend="${#fields.hasErrors('houseCapacity')}?'text-danger'"  th:field="*{houseCapacity}"  />
+	
+						</div>
+						<div class="form-group">
+						<span class="label label-info">房租:</span>
+						<input type="text" class="form-control" required="required" placeholder="请输入房租" id="houseCost"
+                         th:classappend="${#fields.hasErrors('houseCost')}?'text-danger'"  th:field="*{houseCost}"  />
+						</div>
+						
+						<div class="form-group">
+					  <span class="label label-info">出租人姓名</span>		<span>适合住宿的人数:</span>
+				       <input type="text" class="form-control" required="required" placeholder="请输入您的姓名" id="houseHostname"
+                         th:classappend="${#fields.hasErrors('houseHostname')}?'text-danger'"  th:field="*{houseHostname}"  />
+						</div>
+						<div class="form-group">
+						<span class="label label-info">房屋简介:</span>
+                         <input type="text" class="form-control" required="required" placeholder="请输入房屋简介" id="houseDesc"
+                         th:classappend="${#fields.hasErrors('houseDesc')}?'text-danger'"  th:field="*{houseDesc}" />
+						</div>
+					  <div class="form-group">
+						<span class="label label-info">房屋状态(可出租状态为1，不可出租状态为0):</span>
+                         <input type="text" class="form-control" required="required" placeholder="请输入房屋简介" id="houseState"
+                         th:classappend="${#fields.hasErrors('houseDesc')}?'text-danger'"  th:field="*{houseState}" />
+						</div>
+						<div class="form-group">
+			<!-- 				   <input type="button" class="btn-danger" value="点击提交房屋信息表单"
+										data-toggle="modal" data-target="#exampleModal" th:onclick="'javascript:add();'"
+										data-whatever="@mdo"> -->
+							 <input type="button" class="btn-danger" value="完成编辑"
+										data-toggle="modal" data-target="#exampleModal" 
+										th:onclick="'javascript:getHouseId(\''+${house.houseId}+'\');'"
+										data-whatever="@mdo">
+						</div>
+					</form>
+
+<div class="modal fade" id="exampleModal" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+									<h4 class="modal-title" id="exampleModalLabel">确认框</h4>
+								</div>
+								<div class="modal-body">
+									<form>
+										<div class="form-group">
+											<label for="message-text" class="control-label" id="myMessage">确认完成编辑?</label>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+								   <input type="hidden" id="info">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">返回</button>
+									<button type="button" class="btn btn-primary" onClick="add()">确认</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--</div>-->
+	
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="../../js/jquery-1.10.2.js"></script>
+	<!--  Core Bootstrap Script -->
+	<script src="../../js/bootstrap.js"></script>
+
+</body>
+</html>

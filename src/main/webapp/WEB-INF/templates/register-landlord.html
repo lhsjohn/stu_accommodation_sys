@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <title>学生住宿管理系统</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <!-- FONT AWESOME CSS -->
+    <link href="../../css/font-awesome.min.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <link href="../../css/style.css" rel="stylesheet" />
+    <!-- Google	Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Nova+Flat' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="head">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <a href="index.html">
+                    <img src="../../img/logo.png"  />
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 text-center" >
+                <img src="../../img/top-mouse.png "  class="header-mid" />
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                 <h4><span>姓名:</span>李华硕</h4>
+                    <h4><span>学号:</span>1625131015</h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+<section >
+    <div class="container">
+        <div class="row">
+
+            <!--<div class="col-lg-4 col-md-4 col-sm-4">-->
+            <!--<img src="assets/img/up.png" class="img-responsive" />-->
+            <!--&nbsp;&nbsp; <h3>欢迎登陆</h3>-->
+            <!--<p>-->
+            <!--&nbsp; &nbsp;-->
+            <!--在线选房预约，及时沟通-->
+            <!--</p>-->
+            <!--</div>-->
+            <!--<div class="col-lg-4 col-md-4 col-sm-6 " >-->
+            <!--<img src="assets/img/moniter.png" class="img-responsive img-max-width" />-->
+
+            <!--</div>-->
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-4">
+                <h3>实名注册</h3>
+              <form action="/register-landlord" class="form-horizontal" role="form" 
+               th:action="@{/register-landlord}" th:object="${landlord}" method="post" th:method="post" enctype="multipart/form-data"
+                >
+                <div class="form-group">
+                 <input type="text" class="form-control" required="required" placeholder="请输入用户名" id="landlordUsername"
+                         th:classappend="${#fields.hasErrors('landlordUsername')}?'text-danger'"  th:field="*{landlordUsername}"  />
+            
+                </div>
+                <div class="form-group">
+                     <input type="text" class="form-control" required="required" placeholder="请输入密码" id="landlordPassword"
+                         th:classappend="${#fields.hasErrors('landlordPassword')}?'text-danger'"   th:field="*{landlordPassword}"  />
+            
+                </div>
+               <!--  <div class="form-group">
+                    <input type="text" class="form-control" required="required" placeholder="请确认密码" />
+                </div> -->
+                <div class="form-group">
+                 <input type="text" class="form-control" required="required" placeholder="请输入邮箱" id="landlordEmail"
+                         th:classappend="${#fields.hasErrors('landlordEmail')}?'text-danger'"   th:field="*{landlordEmail}"  />
+       
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" required="required" placeholder="请输入手机号" id="landlordPhone"
+                         th:classappend="${#fields.hasErrors('landlordPhone')}?'text-danger'"   th:field="*{landlordPhone}"  />
+                </div>
+                <div class="form-group">
+                <input type="text" class="form-control" required="required" placeholder="请输入身份证号" id="landlordIdcard"
+                         th:classappend="${#fields.hasErrors('landlordIdcard')}?'text-danger'"   th:field="*{landlordIdcard}"  />
+                </div>
+                <div class="form-group">
+                   <input type="text" class="form-control" required="required" placeholder="请输入你的姓名" id="landlordName"
+                         th:classappend="${#fields.hasErrors('landlordName')}?'text-danger'"   th:field="*{landlordName}"  />
+                </div>
+                <div class="form-group">
+                         <label for="landlordGender" class="col-md-3 col-form-label" 
+                          th:classappend="${#fields.hasErrors('landlordGender')}?'badge badge-danger'" >性别</label>  
+                           <div class="col-md-4"> 
+                          <input type="radio" class="form-control" required="required" id="landlordGender"
+                         th:classappend="${#fields.hasErrors('landlordGender')}?'text-danger'"   th:field="*{landlordGender}" value="male" />男
+                         </div>
+                         <div class="col-md-4">
+                         <input type="radio" class="form-control" required="required" id="landlordGender"
+                         th:classappend="${#fields.hasErrors('landlordGender')}?'text-danger'"   th:field="*{landlordGender}" value="female" />女
+                         </div>
+                </div>
+                <div class="form-group-row col-lg-offset-10" >
+                        <input class="btn btn-danger" type="submit" value="注册">
+                    </div>
+            </form>
+        </div>
+            </div>
+
+    </div>
+
+    </div>
+
+</section>
+
+<!--<div id="footer">-->
+<!--<div class="container">-->
+
+<!--<div class="row">-->
+<!--<div class="col-lg-4 col-md-4 col-sm-4">-->
+<!--<h3>Physical Location</h3>-->
+<!--<p>-->
+<!--<i>Addresss :</i> 125/890 , New York Street,-->
+<!--<br />-->
+<!--United States of America (USA).-->
+<!--<br />-->
+<!--&copy; 2014 yourdomian | by <a href="http://www.binarytheme.com/" style="color:#fff;" target="_blank">binarytheme.com</a>-->
+<!---->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="col-lg-4 col-md-4 col-sm-4">-->
+<!--<h3>Get Quick Help</h3>-->
+<!--<h4><span> Call: </span>+01-4589-987-567</h4>-->
+<!--<h4><span>E-mail: </span>info@domain.com</h4>-->
+<!--<h4><span>Skype:</span> sonasup</h4>-->
+<!--</div>-->
+<!--<div class="col-lg-4 col-md-4 col-sm-4">-->
+
+<!--<h3>Subscribe For Updates</h3>-->
+<!--<form>-->
+
+<!--<div class="form-group">-->
+<!--<input type="text" class="form-control" required="required" placeholder="Your Email" />-->
+<!--</div>-->
+
+
+<!--<div class="form-group">-->
+<!--<button type="submit" class="btn btn-danger">Click To Subscribe</button>-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+
+
+
+
+<!--</div>-->
+
+<!--</div>-->
+
+<!--</div>-->
+<!--  Jquery Core Script -->
+<script src="../../js/jquery-1.10.2.js"></script>
+<!--  Core Bootstrap Script -->
+<script src="../../js/bootstrap.js"></script>
+
+</body>
+</html>

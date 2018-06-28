@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+<title>Support Admin</title>
+<!-- BOOTSTRAP CORE STYLE CSS -->
+<link href="../../css/bootstrap.css" rel="stylesheet" />
+<!-- FONT AWESOME CSS -->
+<link href="../../css/font-awesome.min.css" rel="stylesheet" />
+<!-- CUSTOM STYLE CSS -->
+<link href="../../css/style.css" rel="stylesheet" />
+<!-- Google	Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Nova+Flat'
+	rel='stylesheet' type='text/css' />
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300'
+	rel='stylesheet' type='text/css' />
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+   <script type="text/javascript">
+	$('#myModal').on('shown.bs.modal', function() {
+		$('#myInput').focus()
+	})
+
+   function getHouseId(url) {
+		$('#url').val(url);//给会话中的隐藏属性URL赋值  
+		$('#exampleModal').modal();
+	}
+	
+	function urlSubmit() {
+
+		var houseId = $("#url").val();
+		alert("取消成功");
+		window.location.href = "student-delete-appointment/" + houseId;
+	}
+   
+   </script>
+</head>
+<body>
+	<div id="head">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<a href="index.html"> <img src="../../img/logo.png" />
+					</a>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+					<img src="../../img/top-mouse.png " class="header-mid" />
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4">
+				      <h4><span>姓名:</span>李华硕</h4>
+                    <h4><span>学号:</span>1625131015</h4>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<section id="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9 col-md-9 col-sm-9">
+
+					<h3>
+						我的预约申请<span class="label label-success">5</span>
+					</h3>
+
+					<div class="hr-div">
+						<hr />
+					</div>
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>编号</th>
+									<th>房屋地址</th>
+									<th>类型</th>
+									<th>适合住宿的人数</th>
+									<th>房租</th>
+									<th>房主信息</th>
+									<th>房屋描述</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="appointment,appointmentStat:${appointmentList}">
+									<td th:text="${appointmentStat.count}"></td>
+									<td th:text="${appointment.appHouseAddress}"></td>
+									<td><span class="label label-danger"
+										th:text="${appointment.appHouseType}"></span></td>
+									<td th:text="${appointment.appHouseCapacity}+'人'"></td>
+									<td th:text="${appointment.appHouseCost}+'元/月'"></td>
+									<td><span class="label label-default"
+										th:text="${appointment.appHouseHostname}"> </span></td>
+									<td th:text="${appointment.appHouseDesc}"></td>
+									<td><input type="button" class="btn-danger" value="取消预约"
+										data-toggle="modal" data-target="#exampleModal"
+										th:onclick="'javascript:getHouseId(\''+${appointment.appHouseId}+'\');'"
+										data-whatever="@mdo"></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+
+			</div>
+         
+         			<!--显示分页信息-->
+			<div class="row">
+				<!--文字信息-->
+				<div class="col-lg-6 col-md-6 col-sm-6"
+					th:text="'当前第' + ${pageInfo.pageNum} +'页.总共 ' + ${pageInfo.pages} +'页.一共' +
+        ${pageInfo.total} + '条记录'">
+                     </div>
+					<!--点击分页-->
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<nav aria-label="Page navigation">
+							<ul class="pagination" >
+								<li><a th:href="@{student_appointment?pn=1}" th:text="首页"></a></li>                            
+								<!--上一页-->
+								<li th:if="${pageInfo.hasPreviousPage}"><a
+									th:href="@{'student_appointment?pn='+${pageInfo.pageNum-1}}"
+									aria-label="Previous"> <span aria-hidden="true">上一页</span>
+								</a>
+								</li>
+								<!--循环遍历连续显示的页面，若是当前页就高亮显示，并且没有链接-->
+							  <th:block th:each="page_num:${pageInfo.navigatepageNums}">
+							  <th:block th:if="${page_num == pageInfo.pageNum}">
+							  	<li  class="active" ><a href="#" th:text="${page_num}"></a></li>
+                                </th:block> 
+                                <th:block th:if="${page_num != pageInfo.pageNum}">
+                                 	<li ><a th:href="@{'student_appointment?pn='+${page_num}}" th:text="${page_num}"></a></li>
+                                 </th:block>
+                                 
+					             </th:block>
+								
+								<!--下一页-->
+								<th:block th:if="${pageInfo.hasNextPage}">
+								<li><a
+									th:href="@{'student_appointment?pn='+${pageInfo.pageNum+1}}"
+									aria-label="Next"> <span aria-hidden="true">下一页</span>
+								</a></li>
+                                </th:block>
+								<li><a
+									th:href="@{'student_appointment?pn='+${pageInfo.pages}}">尾页</a></li>
+							  <li><a th:href="@{/student_return_dashboard}">返回学生主页</a></li>
+							</ul>
+						</nav>
+					</div>
+
+				</div>
+
+
+
+
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+							<h4 class="modal-title" id="exampleModalLabel">确认框</h4>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="message-text" class="control-label">确定要取消预约？</label>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<input type="hidden" id="url">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">返回</button>
+							<button type="button" class="btn btn-primary"
+								onclick="urlSubmit()">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+	</section>
+	<!--  Jquery Core Script -->
+	<script src="../../js/jquery-1.10.2.js"></script>
+	<!--  Core Bootstrap Script -->
+	<script src="../../js/bootstrap.js"></script>
+
+</body>
+</html>
