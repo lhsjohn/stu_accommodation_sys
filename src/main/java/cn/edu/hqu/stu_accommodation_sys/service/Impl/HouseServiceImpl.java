@@ -48,8 +48,17 @@ public class HouseServiceImpl implements HouseService {
 
 	@Override
 	public House getHouseById(String houseId) {
-		return houseMapper.selectByPrimaryKey(houseId);
+		
+		HouseExample example=new HouseExample();
+		Criteria criteria=example.createCriteria();
+		criteria.andHouseIdEqualTo(houseId);
+		List<House>list=new ArrayList<House>();
+		list=houseMapper.selectByExample(example);
+		return list.get(0);
 	}
+	
+	
+	
 
 	@Override
 	public List<House> getHouseByLandlordUsername(String landlordUsername) {

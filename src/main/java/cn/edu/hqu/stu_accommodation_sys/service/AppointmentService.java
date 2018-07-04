@@ -10,7 +10,7 @@ import cn.edu.hqu.stu_accommodation_sys.pojo.Student;
 public interface AppointmentService {
 	void insertStudentAppointment(Student student,House house);
 	 List<Appointment> getStuAppointmentList(String stuName);
-	 List<Appointment> getLandlordAppointment(String LandlordName);
+	 List<Appointment> getLandlordAppointment(String LandlordId);
 	 void deleteStudentAppointment(String HouseId);
 	 Appointment getAppointByAppId(String appId);
 }

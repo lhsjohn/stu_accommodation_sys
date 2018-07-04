@@ -6,7 +6,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -27,18 +29,17 @@ public class RegisterController {
 	@Autowired
 	private LandlordService landlordService;
 	
-	
-	
-	@RequestMapping(value="register-student",method=RequestMethod.GET)
+
+	@RequestMapping(value="/register-student",method=RequestMethod.GET)
 	public String showStudentRegisterForm(Model model) {
 		model.addAttribute(new Student());
 		return "register-student";	
 	}
 
 	
-	@RequestMapping(value="register-student",method=RequestMethod.POST)
-	public String processRegister(@Valid Student student,Errors errors,RedirectAttributes model) {
-		   if(errors.hasErrors()) {
+	@RequestMapping(value="/register-student",method=RequestMethod.POST)
+	public String processRegister(@Valid Student student,BindingResult result,RedirectAttributes model) {
+		   if(result.hasErrors()) {
 			   //System.out.println(123);
 			   //return "register-student";
 			   return "register-student";
@@ -63,11 +64,12 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(value="register-landlord",method=RequestMethod.POST)
-	public String processLandlordRegsiter(Landlord landlord,Errors errors,RedirectAttributes model) {
+	public String processLandlordRegsiter(@Validated Landlord landlord,Errors errors,RedirectAttributes model) {
 		if(errors.hasErrors()) {
-		 System.out.println("出现了错误"+landlord.toString());
+		  System.out.println("出现了错误"+landlord.toString());
 			return "register-landlord";
 		}else if(!landlordService.registerLandlord(landlord)) {
+			model.addAttribute("message","用户名已存在");
 			System.out.println(landlord.toString());
 			return "register-landlord";
 		}else {

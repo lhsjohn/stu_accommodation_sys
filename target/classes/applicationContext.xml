@@ -37,5 +37,4 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<context:component-scan base-package="cn.edu.hqu.stu_accommodation_sys.controller"/>
 	<context:component-scan base-package="cn.edu.hqu.stu_accommodation_sys.service"/>
 	<context:annotation-config></context:annotation-config>
-    
 </beans>

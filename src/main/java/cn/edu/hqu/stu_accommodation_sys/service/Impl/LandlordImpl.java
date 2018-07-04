@@ -23,7 +23,7 @@ public class LandlordImpl implements LandlordService {
 	public boolean registerLandlord(Landlord landlord) {
        LandlordExample example=new LandlordExample();
        Criteria criteria=example.createCriteria();
-       criteria.andLandlordUsernameEqualTo(landlord.getLandlordName());
+       criteria.andLandlordUsernameEqualTo(landlord.getLandlordUsername());
        List<Landlord> list=new ArrayList<Landlord>();
        list=landlordMapper.selectByExample(example);
        if(list.isEmpty()) {

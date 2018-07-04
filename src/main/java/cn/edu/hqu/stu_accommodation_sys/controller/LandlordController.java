@@ -71,7 +71,7 @@ public class LandlordController {
 		List<Appointment> list=new ArrayList<Appointment>();
 		Landlord landlord=new Landlord();
 		landlord=(Landlord) session.getAttribute("landlordInfo");
-		list=appointmentService.getLandlordAppointment(landlord.getLandlordName());
+		list=appointmentService.getLandlordAppointment(landlord.getLandlordId());
 		session.setAttribute("landlordInfo", landlord);
 		model.addAttribute("appointmentList",list);
 		return "landlord_appointment_info";	

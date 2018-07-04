@@ -50,10 +50,10 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public List<Appointment> getLandlordAppointment(String LandlordName) {
+	public List<Appointment> getLandlordAppointment(String Landlordid) {
 		AppointmentExample example=new AppointmentExample();
 		Criteria criteria=example.createCriteria();
-		criteria.andAppLandlordNameEqualTo(LandlordName);
+		criteria.andAppLandlordIdEqualTo(Landlordid);
 		List<Appointment>list=new ArrayList<Appointment>();
 		list=appointmentMapper.selectByExample(example);
 		return list;

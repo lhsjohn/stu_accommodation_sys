@@ -51,7 +51,7 @@
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 
-		<url-pattern>*.css</url-pattern>
+	 <url-pattern>*.css</url-pattern>
 
 		<url-pattern>*.js</url-pattern>
 
@@ -73,6 +73,6 @@
 
 		<url-pattern>*.xlsx</url-pattern>
 
-		<url-pattern>*.txt</url-pattern>
+		<url-pattern>*.txt</url-pattern>  
 	</servlet-mapping>
 </web-app> 

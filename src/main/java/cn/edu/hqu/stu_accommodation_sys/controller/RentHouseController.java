@@ -28,7 +28,7 @@ public class RentHouseController {
 	private HouseService houseService;
 	
 
-	@RequestMapping(value="landlord_rent_form",method=RequestMethod.GET)
+	@RequestMapping(value="/landlord_rent_form",method=RequestMethod.GET)
 	public String showRentHouseForm(Model model,HttpSession session) {
 		model.addAttribute(new House());
 	   Landlord landlord=(Landlord) session.getAttribute("landlordInfo");

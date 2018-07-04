@@ -38,20 +38,19 @@
         <!--解决中文乱码-->
         <property name="characterEncoding" value="UTF-8"/>
     </bean>
-    <mvc:default-servlet-handler/>
-	<!-- 配置资源映射 -->
+  <mvc:default-servlet-handler/> 
+	<!-- 配置资源映射 -->  
 	<mvc:resources location="/css/" mapping="/css/**"/>
 	<mvc:resources location="/js/" mapping="/js/**"/>
 	<mvc:resources location="/img/" mapping="/img/**"/>
-	<mvc:resources location="/fonts/" mapping="/fonts/**"/>
-	<mvc:resources location="**/css/" mapping="/css/**"/>
-	<mvc:resources location="**/js/" mapping="/js/**"/>
-	<mvc:resources location="**/img/" mapping="/img/**"/>
-	<mvc:resources location="/fonts/" mapping="/fonts/**"/>
-	<mvc:resources location="/css/" mapping="**/css/**"/>
+	<mvc:resources location="/fonts/" mapping="/fonts/**"/> 
+
+	
+    <mvc:resources location="/css/" mapping="**/css/**"/>
 	<mvc:resources location="/js/" mapping="**/js/**"/>
 	<mvc:resources location="/img/" mapping="**/img/**"/>
-	<mvc:resources location="/fonts/" mapping="**/fonts/**"/>
+	<mvc:resources location="/fonts/" mapping="**/fonts/**"/> 
+
 	<!-- 配置多媒体解析器 -->
 	<!-- 定义文件上传解析器 -->
 	<bean id="multipartResolver"

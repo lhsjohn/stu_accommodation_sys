@@ -45,12 +45,13 @@ public class MeetingController {
 	private HouseService houseService;
 	
 	
-	@RequestMapping(value="meeting/{appId}")
+	@RequestMapping(value="/meeting/{appId}")
 	public String showMeetingInfo(@PathVariable String appId,Model model,HttpSession session) {
 		Appointment appointment=appointService.getAppointByAppId(appId);
 		Student student=studentService.getStudentByPrimaryKey(appointment.getAppStuId());
 		System.out.println("aaaaaaaaaaa"+student.toString());
 		Landlord landlord=landlordService.getLandlordById(appointment.getAppLandlordId());
+		System.out.println("+++++++++++++"+appointment.getAppHouseId());
 		House house=houseService.getHouseById(appointment.getAppHouseId());
 		meetingService.insertMeetingInfo(student, landlord, house);
 		model.addAttribute("landlordInfo",landlord);
