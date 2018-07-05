@@ -2,18 +2,28 @@ package cn.edu.hqu.stu_accommodation_sys.pojo;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * @author 
  */
 public class Student implements Serializable {
     private String stuId;
-
+    
+    @Size(min=3,max=12,message="用户名信息在3-12位之间")
     private String stuUsername;
-
+    
+    @Size(min=5,max=15,message="密码长度在5-15位之间")
     private String stuPassword;
 
+	@NotEmpty(message="邮箱不能为空")
+	@Email(message="请输入正确的邮箱格式")
     private String stuEmail;
-
+  
+	@Size(min=11,max=11,message="请输入十一位手机号码")
     private String stuPhone;
 
     private String stuGender;

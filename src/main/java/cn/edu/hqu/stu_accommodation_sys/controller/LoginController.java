@@ -2,6 +2,7 @@ package cn.edu.hqu.stu_accommodation_sys.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,7 @@ public class LoginController {
 	public String checkStudentLogin(Student student,Errors erros,RedirectAttributes model) {
 		Student student2=null;
 		System.out.println(student.getStuUsername()+ " "+student.getStuPassword());
-		if((student2=studentService.studentLogin(student.getStuUsername(), student.getStuPassword()))==null) {
+		if((student2=studentService.studentLogin(student.getStuUsername(), DigestUtils.md5Hex(student.getStuPassword())))==null) {
 		  return "login-student";
 	} else {
 		student2=studentService.findStudentByStuUserName(student.getStuUsername());
@@ -54,7 +55,7 @@ public class LoginController {
 	   Landlord landlord2=null;
 	  
 	   System.out.println(landlord.getLandlordUsername()+"  "+landlord.getLandlordPassword());
-	   if((landlord2=landlordService.landlordLogin(landlord.getLandlordUsername(),landlord.getLandlordPassword()))==null) {
+	   if((landlord2=landlordService.landlordLogin(landlord.getLandlordUsername(),DigestUtils.md5Hex(landlord.getLandlordPassword())))==null) {
 		   return "login-landlord";
 	   }else {
 		   landlord2=landlordService.findLandlordByUserName(landlord.getLandlordUsername());

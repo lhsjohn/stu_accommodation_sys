@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,7 @@ public class StudentImpl implements StudentService {
 		if(list.isEmpty()) {
 			String uuid=UUID.randomUUID().toString().replace("-", "");
 			student.setStuId(uuid);
+			student.setStuPassword(DigestUtils.md5Hex(student.getStuPassword()));
 			studentMapper.insert(student);
 			return true;
 		}

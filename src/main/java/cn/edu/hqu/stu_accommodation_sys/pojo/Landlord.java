@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -73,7 +75,17 @@ public class Landlord implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
-
+	@Override
+	public boolean equals(Object that) {
+		// TODO Auto-generated method stub
+		return EqualsBuilder.reflectionEquals(this, that, "landlordUsername","landlordName","landlordPhone","landlordPassword","landlordEmail");
+	}
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return HashCodeBuilder.reflectionHashCode(this,  "landlordUsername","landlordName","landlordPhone","landlordPassword","landlordEmail");
+	}
+    
 	@Override
 	public String toString() {
 		return "Landlord [landlordId=" + landlordId + ", landlordUsername=" + landlordUsername + ", landlordPassword="

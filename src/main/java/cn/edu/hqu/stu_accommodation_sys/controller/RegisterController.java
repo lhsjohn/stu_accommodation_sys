@@ -38,7 +38,7 @@ public class RegisterController {
 
 	
 	@RequestMapping(value="/register-student",method=RequestMethod.POST)
-	public String processRegister(@Valid Student student,BindingResult result,RedirectAttributes model) {
+	public String processRegister(@Validated Student student,Errors result,RedirectAttributes model) {
 		   if(result.hasErrors()) {
 			   //System.out.println(123);
 			   //return "register-student";
@@ -46,8 +46,7 @@ public class RegisterController {
 		   }
 		   else if(!studentService.registerStudent(student)) {
 			 /*  errors.rejectValue("stuName", "该用户已经存在");*/
-			   System.out.println(123);
-			   System.out.println(student.toString());
+		
 			   return "register-student";
 		   }
 		   else {

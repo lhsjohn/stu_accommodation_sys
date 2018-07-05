@@ -15,6 +15,9 @@
     <![endif]-->
     <title>学生住宿管理系统</title>
     <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link
+	href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet">
     <link href="/stu_accommodation_sys/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME CSS -->
     <link href="/stu_accommodation_sys/css/font-awesome.min.css" rel="stylesheet" />
@@ -49,13 +52,13 @@
         </div>
     </div>
 </div>
-<section >
+
     <div class="container">
                  
           <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-4">
                 <h3>实名注册 </h3>
                 
-              <form action="/register-landlord" class="form-horizontal" role="form" 
+<!--               <form action="/register-landlord" class="form-horizontal" role="form" 
                th:action="@{/register-landlord}" th:object="${landlord}" method="post" th:method="post" enctype="multipart/form-data"
                 >
          
@@ -104,12 +107,95 @@
                         <input class="btn btn-danger" type="submit" value="注册">
                     </div>
             </form>
-        </div> 
+        </div>  -->
         
+           	<form class="form-horizontal" role="form" action="/register-landlord"
+				th:action="@{/register-landlord}" th:object="${landlord}" method="post"
+				th:method="post" enctype="multipart/form-data">
+        		<div class="form-group row">
+					<label for="landlordUsername" class="col-md-3 col-form-label"
+						th:classappend="${#fields.hasErrors('landlordUsername')}?'badge badge-danger'">用户名：</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="landlordUsername"
+							placeholder="请输入用户名"  th:field="*{landlordUsername}"
+							th:classappend="${#fields.hasErrors('landlordUsername')}?'text-danger'">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="landlordPassword" class="col-md-3 col-form-label"
+						th:classappend="${#fields.hasErrors('landlordPassword')}?'badge badge-danger'">密码：</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="landlordPassword"
+							placeholder="请输入密码"  th:field="*{landlordPassword}"
+							th:classappend="${#fields.hasErrors('landlordPassword')}?'text-danger'">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="landlordPhone" class="col-md-3 col-form-label"
+						th:classappend="${#fields.hasErrors('landlordPhone')}?'badge badge-danger'">手机号码：</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="landlordPhone"
+							placeholder="请输入手机号码"  th:field="*{landlordPhone}"
+							th:classappend="${#fields.hasErrors('landlordPhone')}?'text-danger'">
+					</div>
+				</div>
+					<div class="form-group row">
+					<label for="landlordIdcard" class="col-md-3 col-form-label"
+						th:classappend="${#fields.hasErrors('landlordIdcard')}?'badge badge-danger'">身份证号码：</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="landlordIdcard"
+							placeholder="请输入身份证号码"  th:field="*{landlordIdcard}"
+							th:classappend="${#fields.hasErrors('landlordIdcard')}?'text-danger'">
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label for="landlordEmail" class="col-md-3 col-form-label"
+						th:classappend="${#fields.hasErrors('landlordEmail')}?'badge badge-danger'">邮箱：</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="landlordEmail"
+							placeholder="请输入邮箱"  th:field="*{landlordEmail}"
+							th:classappend="${#fields.hasErrors('landlordEmail')}?'text-danger'">
+					</div>
+				
+				</div>
+        
+          		<div class="form-group row">
+					<label for="landlordName" class="col-md-3 col-form-label"
+						th:classappend="${#fields.hasErrors('landlordName')}?'badge badge-danger'">姓名：</label>
+					<div class="col-md-9">
+						<input type="text" class="form-control" id="landlordName"
+							placeholder="请输入你的姓名"  th:field="*{landlordName}"
+							th:classappend="${#fields.hasErrors('landlordName')}?'text-danger'">
+					</div>
+				</div>
+        
+           		<div class="form-group row">
+					<label for="landlordGender" class="col-md-3 col-form-label"
+						th:classappend="${#fields.hasErrors('landlordGender')}?'badge badge-danger'">性别：</label>
+				         <div class="col-md-4"> 
+                          <input type="radio" class="form-control" required="required" id="landlordGender"
+                         th:classappend="${#fields.hasErrors('landlordGender')}?'text-danger'"   th:field="*{landlordGender}" value="male" />男
+                         </div>
+                         <div class="col-md-4">
+                         <input type="radio" class="form-control" required="required" id="landlordGender"
+                         th:classappend="${#fields.hasErrors('landlordGender')}?'text-danger'"   th:field="*{landlordGender}" value="female" />女
+                         </div>
+				</div>
+        
+             <div class="form-group-row col-lg-offset-10" >
+                        <input class="btn btn-danger" type="submit" value="注册">
+                    </div>
+        
+        
+        </form>
+        
+        
+        </div>
 
 
 
-</section>
+
 
 <!--  Jquery Core Script -->
 <script src="/stu_accommodation_sys/js/jquery-1.10.2.js"></script>

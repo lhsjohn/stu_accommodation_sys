@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ public class LandlordImpl implements LandlordService {
     	  String id= UUID.randomUUID().toString().replace("-", "");
     	  landlord.setLandlordId(id);
     	  landlord.setLandlordAccount(1200.00);
+    	  landlord.setLandlordPassword(DigestUtils.md5Hex(landlord.getLandlordPassword()));
     	   landlordMapper.insert(landlord);
     	   return true;
        }
