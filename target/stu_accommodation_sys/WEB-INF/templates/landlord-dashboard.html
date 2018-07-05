@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <title>Support Admin</title>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="/stu_accommodation_sys/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONT AWESOME CSS -->
+    <link href="/stu_accommodation_sys/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <link href="/stu_accommodation_sys/css/style.css" rel="stylesheet" />
+    <!-- Google	Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Nova+Flat' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="head">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                	<a href="/stu_accommodation_sys/">返回首页
+                    <img src="/stu_accommodation_sys/img/logo.png"  />
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 text-center" >
+                <img src="/stu_accommodation_sys/img/top-mouse.png "  class="header-mid" />
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                   <h4><span>姓名:</span>李华硕</h4>
+                    <h4><span>学号:</span>1625131015</h4>
+            </div>
+
+        </div>
+    </div>
+</div>    <section>
+    <div class="container">
+        <div class="row noti-div">
+            <div class="col-lg-3 col-md-3 col-sm-3  text-center">
+                <a href="#">
+                    <div class="alert alert-danger" th:object="${landlordInfo}">
+                        <i class="fa fa-user fa-4x"></i>
+                        <span class="label label-info" th:text="${landlordInfo.landlordUsername}"></span>                     
+                        <p th:text=" '余额:'+ ${landlordInfo.landlordAccount}">
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3  text-center">
+                <a href="/stu_accommodation_sys/landlord_rent_form">
+                    <div class="alert alert-success">
+                        <i class="fa fa-folder-open-o fa-4x"></i>
+                        <span class="label label-warning">我要出租</span>
+                        <span class="label label-success"></span>
+                        <p>
+                            填写出租房单
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-lg-3 col-md-3 col-sm-3  text-center">
+                <a href="/stu_accommodation_sys/landlord-appointment-info">
+                    <div class="alert alert-warning">
+                        <i class="fa fa-briefcase fa-4x"></i>
+                        <span class="label label-success">预约请求</span>
+                        <span class="label label-warning">4</span>
+                        <p>
+                            我收到的预约请求
+
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 text-center">
+                <a href="/stu_accommodation_sys/landlord-meeting-list">
+                    <div class="alert alert-info">
+                        <i class="fa fa-recycle fa-4x"></i>
+
+                        <span class="label label-danger">会面信息</span>
+                        <span class="label label-info">3</span>
+                        <p>
+                            我的会面消息
+                        </p>
+
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 text-center">
+                <a href="/stu_accommodation_sys/landlord-rent-info">
+                    <div class="alert alert-info">
+                        <i class="fa fa-windows fa-4x"></i>
+
+                        <span class="label label-danger">我已出租的房子</span>
+                        <span class="label label-info">3</span>
+                        <p>
+                            我已经出租的房子
+                        </p>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+</div>
+<!--  Jquery Core Script -->
+<script src="/stu_accommodation_sys/js/jquery-1.10.2.js"></script>
+<!--  Core Bootstrap Script -->
+<script src="/stu_accommodation_sys/js/bootstrap.js"></script>
+
+</body>
+</html>

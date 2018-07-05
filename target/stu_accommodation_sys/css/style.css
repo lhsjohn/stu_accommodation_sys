@@ -1,0 +1,98 @@
+﻿/*=============================================================
+    Authour URI: www.binarytheme.com
+    License: Commons Attribution 3.0
+
+    http://creativecommons.org/licenses/by/3.0/
+
+    100% Free To use For Personal And Commercial Use.
+    IN EXCHANGE JUST GIVE US CREDIT US AND TELL YOUR FRIENDS ABOUT US
+   
+    ========================================================  */
+
+
+/* =============================================================
+   GENERAL STYLES
+ ============================================================ */
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 30px;
+      background:url('../img/geometry.png');
+}
+h2,h3,h4{
+     font-family: 'Nova Flat';
+    
+}
+
+.noti-div h4{
+    padding:10px;
+}
+.noti-div i {
+    display:block;
+    padding:5px;
+}
+.noti-div a,.noti-div a:hover {
+    text-decoration:none;
+}
+section {
+    padding:50px 0px 0px 0px;
+}
+.img-max-width {
+    max-width: 270px;
+}
+
+/* =============================================================
+   HEADER STYLES
+ ============================================================ */
+#head {
+    padding:30px;
+    background:url('../img/binding_dark.png');
+    color:#fff;
+}
+#head span {
+    color:#ff8c00;
+     margin-right:5px;
+}
+#head .header-mid {
+    max-height:65px;
+}
+ 
+#head h4 {
+    font-size:15px;
+    font-weight:500;
+}
+/* =============================================================
+   MAIN SECTION STYLES
+ ============================================================ */
+#main h3 {
+    color:#000;
+    padding:0px 0px 10px 0px;
+    line-height: 40px;
+}
+#main .hr-div hr{
+    padding-bottom:30px;
+   
+}
+.logout-link {
+    margin-bottom:40px!important;
+}
+    /* =============================================================
+   FOOTER STYLES
+ ============================================================ */
+
+#footer {
+    padding:30px;
+     background:url('../img/binding_dark.png');
+    color:#fff;
+    margin-top:100px;
+}
+#footer h4{
+     font-size:15px;
+    font-weight:500;
+}
+    #footer h3 {
+        color:#ff8c00;
+    }
+    #footer span {
+        color:#ff8c00;
+        margin-right:5px;
+    }
