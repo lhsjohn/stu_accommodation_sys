@@ -30,6 +30,7 @@ public class MeetingServiceImpl implements MeetingService {
 		meeting.setMeetHouseHostname(landlord.getLandlordName());
 		meeting.setMeetHouseType(house.getHouseType());
 		meeting.setMeetHousePrice(house.getHouseCost());
+		
 		meeting.setMeetStuName(student.getStuUsername());
 		meeting.setMeetPlace("会面点1111");
 		meeting.setMeetLandlordId(landlord.getLandlordId());

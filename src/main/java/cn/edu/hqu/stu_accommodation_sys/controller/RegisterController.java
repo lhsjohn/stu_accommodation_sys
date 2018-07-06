@@ -75,7 +75,6 @@ public class RegisterController {
 		}else {
 			landlord=landlordService.findLandlordByUserName(landlord.getLandlordUsername());
 			model.addFlashAttribute("landlordInfo",landlord);
-			
 			session.setAttribute("landlordInfo", landlord);
 			return "redirect:/landlord-dashboard";
 			//return "landlord-dashboard";
