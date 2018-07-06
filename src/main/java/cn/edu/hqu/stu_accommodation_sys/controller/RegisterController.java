@@ -1,5 +1,6 @@
 package cn.edu.hqu.stu_accommodation_sys.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.junit.Test;
@@ -63,7 +64,7 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(value="register-landlord",method=RequestMethod.POST)
-	public String processLandlordRegsiter(@Validated Landlord landlord,Errors errors,RedirectAttributes model) {
+	public String processLandlordRegsiter(@Validated Landlord landlord,Errors errors,RedirectAttributes model,HttpSession session) {
 		if(errors.hasErrors()) {
 		  System.out.println("出现了错误"+landlord.toString());
 			return "register-landlord";
@@ -72,7 +73,9 @@ public class RegisterController {
 			System.out.println(landlord.toString());
 			return "register-landlord";
 		}else {
+			landlord=landlordService.findLandlordByUserName(landlord.getLandlordUsername());
 			model.addFlashAttribute("landlordInfo",landlord);
+			session.setAttribute("landlordInfo", landlord);
 			return "redirect:/landlord-dashboard";
 			//return "landlord-dashboard";
 		}

@@ -74,7 +74,7 @@
 					<label for="landlordPassword" class="col-md-3 col-form-label"
 						th:classappend="${#fields.hasErrors('landlordPassword')}?'badge badge-danger'">密码：</label>
 					<div class="col-md-9">
-						<input type="text" class="form-control" id="landlordPassword"
+						<input type="password" class="form-control" id="landlordPassword"
 							placeholder="请输入密码"  th:field="*{landlordPassword}"
 							th:classappend="${#fields.hasErrors('landlordPassword')}?'text-danger'">
 					</div>
