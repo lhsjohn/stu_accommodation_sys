@@ -28,10 +28,10 @@ public class MeetingServiceImpl implements MeetingService {
 	public int insertMeetingInfo(Student student, Landlord landlord, House house) {
 		Meeting meeting=new Meeting();
 		meeting.setMeetHouseHostname(landlord.getLandlordName());
-		meeting.setMeetHousePrice(house.getHouseCost());
 		meeting.setMeetHouseType(house.getHouseType());
+		meeting.setMeetHousePrice(house.getHouseCost());
 		meeting.setMeetStuName(student.getStuUsername());
-		meeting.setMeetPlace("会面点1");
+		meeting.setMeetPlace("会面点1111");
 		meeting.setMeetLandlordId(landlord.getLandlordId());
 		meeting.setMeetTime(new Date().toString());
         String meetId=UUID.randomUUID().toString().replace("-", "");
